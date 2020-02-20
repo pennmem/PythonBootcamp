@@ -82,13 +82,13 @@ as your Python environment. If you've been logged in to JupyterLab this
 whole time, you may need to log out and log back in again to see this
 change take effect.
 
-**Getting the PythonBootcamp JupyterLab notes:**
+### Getting the PythonBootcamp JupyterLab notes
 
 Open a terminal inside JupyterLab, or by ssh, and type:
 
     git clone 'https://github.com/pennmem/PythonBootcamp'
 
-### Learning how to use the tools and perform analyses:
+### Learning how to use the tools and perform analyses
 
 In JupyterLab, navigate to the lecture notes you downloaded using
 the file browser section on the left, open the lecture notes, and
