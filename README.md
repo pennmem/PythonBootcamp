@@ -2,9 +2,16 @@
 
 These are notes for the Computational Memory Lab's Python Bootcamp.  They are also a good introduction to performing EEG analyses, and you can use them as a resource for learning these tools and methods.
 
+# Making use of this tutorial
+
+This tutorial can be made use of on your own system after obtaining the
+CMLExamples data set (contact kahana-sysadmin@sas.upenn.edu to receive
+access to these files) or directly on the Rhino computing cluster if you
+have access to this.
+
 # Getting started on Rhino
 
-If you have been provided with an account on the Rhino computing cluster, these instructions will help you access and setup your account to the point where you can follow these bootcamp notes and perform analyses.
+If you have been provided with an account on the Rhino computing cluster, these instructions will help you access and setup your account to the point where you can follow these bootcamp notes and perform analyses.  If you are using another system, skip ahead to Setting up JupyterLab.
 
 ### Setting up your Rhino2 Account
 
@@ -51,7 +58,12 @@ commands:
     source activate environmentname
     conda install -c pennmem cmlreaders
 
-### Setting up JupyterLab
+### Rhino Specific Guide
+
+Rhino specific instructions, such as usage examples for CMLReader, are in
+the Rhino\_Usage.ipynb notebook.
+
+# Setting up JupyterLab
 
 Next, you'll need to install a suite of tools for EEG analysis. First,
 install MNE by typing the following (be sure you're in the Anaconda
@@ -67,8 +79,8 @@ former lab members:
     conda install -c pennmem ptsa
 
 Finally, you'll need to link JupyterLab with your specific Python
-installation. While still logged in to your rhino account and in your
-Anaconda "environment", type:
+installation.  While still logged in and in your Anaconda "environment",
+type:
 
     conda install ipykernel
 
@@ -88,6 +100,16 @@ Open a terminal inside JupyterLab, or by ssh, and type:
 
     git clone 'https://github.com/pennmem/PythonBootcamp'
 
+### Setting up the CMLExamples files
+
+You will need to provide each notebook code example making use of the
+CMLExamples files with how to find the files.  The simplest way if your
+system supports it is to make a symbolic link in your PythonBootcamp
+directory to these files.  For example, on Rhino this is currently
+(temporarily) done by going into the PythonBootcamp directory and entering:
+
+    ln -s /scratch/CMLExamples
+
 ### Learning how to use the tools and perform analyses
 
 In JupyterLab, navigate to the lecture notes you downloaded using
@@ -96,3 +118,4 @@ proceed through them in order. If appropriate for your background and
 situation, jump ahead to the relevant sections to see syntax examples
 for common analyses and for using the common tools used by the
 Computational Memory Lab.
+
