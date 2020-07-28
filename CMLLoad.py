@@ -64,11 +64,12 @@ class CMLLoad():
        Returns the data file corresponding to a given key.'''
     return os.path.join(self.data_dir, dr[key+'_file'])
 
-  def LoadEEG(self, df_row, ev_start=0, ev_len=None, strict=None):
+  def LoadEEG(self, df_row, ev_start=0, ev_len=None, buf=None, strict=None):
     '''df_row: A selected DataFrame row.
        ev_start: The relative offset for starting each event in milliseconds.
        ev_len: The length to make of each event in milliseconds.
          dividing the eeg into time around event boundaries.
+       buf: Extra time in millieconds to add to both ends of each event.
        strict: A bool enabling ArithmeticError for nans.
        Returns a 3 element tuple of:
          (numpy array [events, channels, time], samplingrate, channels).'''
@@ -85,12 +86,18 @@ class CMLLoad():
 
     channels = self.Load(dr, 'channels')
 
+    buf_trim = 0
     if ev_len is not None:
+      if buf is not None:
+        ev_start -= buf
+        ev_len += 2*buf
+        buf_trim = int(round(buf*sr/1000.))
+
       self.events = self.Load(dr, 'events')
       samp_start = int(round(ev_start*sr/1000.))
       samp_len = int(round(ev_len*sr/1000.))
       samp_end = samp_start + samp_len
-      if samp_len <= 0:
+      if samp_len <= 2*buf_trim:
         raise ValueError('ev_len yields 0 or fewer samples')
       evarr = np.full((len(self.events), data.shape[1], samp_len), np.nan)
       for i,ev in enumerate(self.events.itertuples()):
@@ -106,19 +113,22 @@ class CMLLoad():
 
     return data, sr, channels
 
-  def LoadPTSA(self, df_row, ev_start=0, ev_len=None, strict=None):
+  def LoadPTSA(self, df_row, ev_start=0, ev_len=None, buf=None, strict=None):
     '''df_row: A selected DataFrame row.
        ev_start: The relative offset for starting each event in milliseconds.
        ev_len: The length to make of each event in milliseconds.
          dividing the eeg into time around event boundaries.
+       buf: Extra time in millieconds to add to both ends of each event.
        strict: Is a bool enabling ArithmeticError for nans.
        Returns a PTSA TimeSeries object.'''
     from ptsa.data.timeseries import TimeSeries
-    data, sr, channels = self.LoadEEG(df_row, ev_start, ev_len, strict)
+    data, sr, channels = self.LoadEEG(df_row, ev_start, ev_len, buf, strict)
     if ev_len is None:
       st = 0
     else:
       st = ev_start
+      if buf is not None:
+        st -= buf
     en = st + (data.shape[-1]-1)*1000./sr
     time = np.linspace(st, en, data.shape[-1])
 
@@ -130,21 +140,24 @@ class CMLLoad():
     return TimeSeries.create(data, sr, coords=coords,
         dims=('event', 'channel', 'time'))
 
-  def LoadMNE(self, df_row, ev_start=0, ev_len=None, strict=None):
+  def LoadMNE(self, df_row, ev_start=0, ev_len=None, buf=None, strict=None):
     '''df_row: A selected DataFrameRow.
        ev_start: The relative offset for starting each event in milliseconds.
        ev_len: The length to make of each event in milliseconds.
          dividing the eeg into time around event boundaries.
+       buf: Extra time in millieconds to add to both ends of each event.
        strict: A bool enabling ArithmeticError for nans.
        Returns an MNE RawArray (no events) or EpochsArray (events).'''
     import mne
-    data, sr, channels = self.LoadEEG(df_row, ev_start, ev_len, strict)
+    data, sr, channels = self.LoadEEG(df_row, ev_start, ev_len, buf, strict)
     info = mne.create_info([str(c) for c in channels.label], sr,
         ch_types='eeg')
 
     if ev_len is None:
       return mne.io.RawArray(data[0], info, first_samp=0)
     else:
+      if buf is not None:
+        ev_start -= buf
       return mne.EpochsArray(data, info, tmin=ev_start / 1000.)
 
   def Load(self, df_row, key):
