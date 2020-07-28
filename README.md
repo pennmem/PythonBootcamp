@@ -38,7 +38,7 @@ connected to the internet on UPenn's campus, you only need to go to
 [https://rhino2.psych.upenn.edu:8200](https://rhino2.psych.upenn.edu:8200/) to
 access JupyterLab. If you are connecting remotely, follow the rest of this
 step. In a terminal where ssh is accessible, replace the "username" with your
-username, and type:
+username, and open an ssh tunnel by typing:
 
     ssh -L8000:rhino2.psych.upenn.edu:8200 username@rhino2.psych.upenn.edu
 
@@ -46,7 +46,7 @@ followed by entering your rhino password. In your web browser, navigate to:
 
 [https://127.0.0.1:8000](https://127.0.0.1:8000)
 
-and you should see the JupyterLab interface pop up!
+and you should see the JupyterLab interface pop up!  Note that the "s" on https is critical for this to work.  If it still fails, go back and make sure that your ssh tunnel was correctly created.
 
 ### Installing CMLReader
 
@@ -60,8 +60,8 @@ commands:
 
 ### Rhino Specific Guide
 
-Rhino specific instructions, such as usage examples for CMLReader, are in
-the Rhino\_Usage.ipynb notebook.
+Rhino specific instructions for internal users, such as usage examples for
+CMLReader, are in the Rhino\_Usage.ipynb notebook.
 
 # Setting up JupyterLab
 
