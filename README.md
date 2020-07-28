@@ -60,8 +60,8 @@ commands:
 
 ### Rhino Specific Guide
 
-Rhino specific instructions for internal users, such as usage examples for
-CMLReader, are in the Rhino\_Usage.ipynb notebook.
+Rhino specific instructions for internal usage beyond the example data set,
+such as usage examples for CMLReader, are in the Rhino\_Usage.ipynb notebook.
 
 # Setting up JupyterLab
 
