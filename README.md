@@ -108,7 +108,7 @@ system supports it is to make a symbolic link in your PythonBootcamp
 directory to these files.  For example, on Rhino this is currently
 (temporarily) done by going into the PythonBootcamp directory and entering:
 
-    ln -s /scratch/CMLExamples
+    ln -s /data/examples
 
 ### Learning how to use the tools and perform analyses
 
