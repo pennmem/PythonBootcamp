@@ -46,7 +46,7 @@ followed by entering your rhino password. In your web browser, navigate to:
 
 [https://127.0.0.1:8000](https://127.0.0.1:8000)
 
-and you should see the JupyterLab interface pop up!  Note that the "s" on https is critical for this to work.  If it still fails, go back and make sure that your ssh tunnel was correctly created.
+and you should see the JupyterLab interface pop up!  Note that the "s" on https is critical for this to work.  Your browser might warn about this being an insecure connection or invalid certificate, given that 127.0.0.1 (direct to the ssh tunnel on your own computer) is not rhino.  Override this warning and connect anyway, because we are using ssh to provide better security here.  If the connection still fails, go back and make sure that your ssh tunnel was correctly created.
 
 ### Installing CMLReader
 
