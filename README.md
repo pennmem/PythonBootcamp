@@ -104,9 +104,9 @@ You will need to provide each notebook code example making use of the
 CMLExamples files with how to find the files.  The simplest way if your
 system supports it is to make a symbolic link in your PythonBootcamp
 directory to these files.  For example, on Rhino this is currently
-(temporarily) done by going into the PythonBootcamp directory and entering:
+done by going into the PythonBootcamp directory and entering:
 
-    ln -s /data/examples
+    ln -s /data/examples CMLExamples
 
 ### Learning how to use the tools and perform analyses
 
