@@ -50,9 +50,7 @@ and you should see the JupyterLab interface pop up!  Note that the "s" on https 
 
 ### Installing CMLReader
 
-From within JupyterLab, click File, New, Terminal. (Alternatively, you
-can use any ssh client to do these steps.) Then enter the following
-commands:
+In your ssh terminal to rhino, enter the following commands:
 
     conda create -y -n environmentname python=3.7
     source activate environmentname
@@ -96,7 +94,7 @@ change take effect.
 
 ### Getting the PythonBootcamp JupyterLab notes
 
-Open a terminal inside JupyterLab, or by ssh, and type:
+Ssh into rhino with a terminal, and type:
 
     git clone 'https://github.com/pennmem/PythonBootcamp'
 
