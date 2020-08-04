@@ -96,7 +96,7 @@ change take effect.
 
 Ssh into rhino with a terminal, and type:
 
-    git clone 'https://github.com/pennmem/PythonBootcamp'
+    git clone 'https://github.com/pennmem/PythonBootcamp.git'
 
 ### Setting up the CMLExamples files
 
